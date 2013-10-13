@@ -160,3 +160,4 @@ REDEPLOY_IDS = [
         'DFA07FFB-B5B0-4115-A0C9-C948D381F43C',
         'test',
         ]
+REDEPLOY_SCRIPT_WITH_ARGS = [ '/tmp/redeploy.sh' ]
