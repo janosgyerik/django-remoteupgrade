@@ -2,7 +2,7 @@ Django Remote Upgrade
 =====================
 A simple Django App to make remote upgrading easy using web hooks.
 
-TODO: how it works
+TODO: how it works, why do this
 
 
 Setup
@@ -13,9 +13,9 @@ Setup
 
 2. Add the following variables to your Django settings:
 
-        REMOTEUPGRADE_IDS = [ 'DFA07FFB-B5B0-4115-A0C9-C948D381F43C', ]
+        REMOTEUPGRADE_IDS = ('DFA07FFB-B5B0-4115-A0C9-C948D381F43C', )
         REMOTEUPGRADE_SCRIPT = '/path/to/upgrade/script.sh'
-        REMOTEUPGRADE_SCRIPT_EXTRA_ARGS = []
+        REMOTEUPGRADE_SCRIPT_EXTRA_ARGS = ()
 
     The IDs should be secret to your site, so that others
     cannot remote upgrade it so easily.
@@ -29,7 +29,9 @@ Setup
 
     Refer to the sample script in `demo/local/upgrade.sh.sample`
 
-3. Add `remoteupgrade` to your `INSTALLED_APPS` list
+3. Add `remoteupgrade` to your `INSTALLED_APPS` list:
+
+        INSTALLED_APPS = INSTALLED_APPS + ('remoteupgrade', )
 
 4. Add the following URL handler:
 
@@ -38,9 +40,15 @@ Setup
 
 Running the demo
 ----------------
-TODO
+TODO (create virtualenv, install requirements with pip, manage runserver)
 
 
 Running the unit tests
 ----------------------
+TODO (./unit.sh in the demo dit)
+
+
 TODO
+----
+- would be nice to log the payload too, not just the referer and user agent
+- more info/examples about testing with GitHub would be nice
