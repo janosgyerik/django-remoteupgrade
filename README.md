@@ -53,3 +53,6 @@ TODO
 - would be nice to log the payload too, not just the referer and user agent
 - more info/examples about testing with GitHub would be nice
 - more testing notes: use a dummy id first, and the dummy upgrade script, switch later
+- https://github.com/janosgyerik/django-remoteupgrade/settings/hooks
+   The **Test Hook** button works only after the url was added AND saved
+- http://www.hurl.it/
