@@ -27,3 +27,9 @@ class RemoteUpgradeTest(TestCase):
     def test_invalid_id(self):
         response = self.client.get('/remoteupgrade/?id=invalid')
         self.assertFailure(response)
+
+    def test_missing_script(self):
+        backup = settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS
+        settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS = [ '/path/to/nonexistent' ]
+        self.assertRaises(OSError, self.test_valid_id)
+        settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS = backup
