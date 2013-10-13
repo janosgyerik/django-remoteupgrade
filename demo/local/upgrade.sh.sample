@@ -1,0 +1,13 @@
+#!/bin/sh -e
+#
+# Put this script in /path/to/project/local/upgrade.sh
+# and customize if necessary
+ 
+cd $(dirname "$0")/..
+ 
+unset GIT_DIR
+git pull
+ 
+./manage.sh collectstatic --noinput
+ 
+touch ../tmp/restart.txt
