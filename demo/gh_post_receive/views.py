@@ -8,12 +8,12 @@ from django import forms
 
 
 class RedeployForm(forms.Form):
-    redeploy_id = forms.CharField()
+    id = forms.CharField()
 
-    def clean_redeploy_id(self):
-        data = self.cleaned_data['redeploy_id']
+    def clean_id(self):
+        data = self.cleaned_data['id']
         if data not in settings.REDEPLOY_IDS:
-            raise forms.ValidationError('Not a registered redeploy_id')
+            raise forms.ValidationError('Not a registered id')
 
         return data
 

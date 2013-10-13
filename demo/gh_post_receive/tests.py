@@ -17,7 +17,7 @@ class RedeployTest(TestCase):
     def test_valid_id(self):
         valid_id = 'valid'
         settings.REDEPLOY_IDS.append(valid_id)
-        response = self.client.get('/redeploy/?redeploy_id=' + valid_id)
+        response = self.client.get('/redeploy/?id=' + valid_id)
         self.assertSuccess(response)
 
     def test_missing_id(self):
@@ -25,5 +25,5 @@ class RedeployTest(TestCase):
         self.assertFailure(response)
 
     def test_invalid_id(self):
-        response = self.client.get('/redeploy/?redeploy_id=invalid')
+        response = self.client.get('/redeploy/?id=invalid')
         self.assertFailure(response)
