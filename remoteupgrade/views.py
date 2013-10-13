@@ -7,12 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django import forms
 
 
-class RedeployForm(forms.Form):
+class RemoteUpgradeForm(forms.Form):
     id = forms.CharField()
 
     def clean_id(self):
         data = self.cleaned_data['id']
-        if data not in settings.REDEPLOY_IDS:
+        if data not in settings.REMOTEUPGRADE_IDS:
             raise forms.ValidationError('Not a registered id')
 
         return data
@@ -33,10 +33,10 @@ def error(args):
 
 
 @csrf_exempt
-def redeploy(request):
-    form = RedeployForm(request.GET)
+def upgrade(request):
+    form = RemoteUpgradeForm(request.GET)
     if form.is_valid():
-        proc = subprocess.Popen(settings.REDEPLOY_SCRIPT_WITH_ARGS, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc = subprocess.Popen(settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = proc.communicate()
         args = {
                 'returncode': proc.returncode,

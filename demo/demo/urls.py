@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'demo.views.home', name='home'),
     # url(r'^demo/', include('demo.foo.urls')),
-    url(r'^redeploy/$', 'redeployer.views.redeploy'),
+    url(r'^remoteupgrade/$', 'remoteupgrade.views.upgrade'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -4,7 +4,7 @@ from django.test import Client
 from django.utils import simplejson as json
 
 
-class RedeployTest(TestCase):
+class RemoteUpgradeTest(TestCase):
     def setUp(self):
         self.client = Client()
         
@@ -16,14 +16,14 @@ class RedeployTest(TestCase):
 
     def test_valid_id(self):
         valid_id = 'valid'
-        settings.REDEPLOY_IDS.append(valid_id)
-        response = self.client.get('/redeploy/?id=' + valid_id)
+        settings.REMOTEUPGRADE_IDS.append(valid_id)
+        response = self.client.get('/remoteupgrade/?id=' + valid_id)
         self.assertSuccess(response)
 
     def test_missing_id(self):
-        response = self.client.get('/redeploy/')
+        response = self.client.get('/remoteupgrade/')
         self.assertFailure(response)
 
     def test_invalid_id(self):
-        response = self.client.get('/redeploy/?id=invalid')
+        response = self.client.get('/remoteupgrade/?id=invalid')
         self.assertFailure(response)

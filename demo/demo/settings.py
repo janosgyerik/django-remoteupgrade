@@ -124,7 +124,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'redeployer',
+    'remoteupgrade',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -156,8 +156,8 @@ LOGGING = {
     }
 }
 
-REDEPLOY_IDS = [
+REMOTEUPGRADE_IDS = [
         'DFA07FFB-B5B0-4115-A0C9-C948D381F43C',
         'test',
         ]
-REDEPLOY_SCRIPT_WITH_ARGS = [ '/tmp/redeploy.sh' ]
+REMOTEUPGRADE_SCRIPT_WITH_ARGS = [ '/tmp/upgrade.sh' ]

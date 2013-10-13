@@ -2,7 +2,7 @@
 
 cd $(dirname "$0")
 
-projectname=redeployer
+projectname=remoteupgrade
 virtualenv=~/virtualenv/$projectname
 test -d $virtualenv && . $virtualenv/bin/activate || {
     echo virtualenv does not exist: $virtualenv
