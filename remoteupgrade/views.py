@@ -36,9 +36,12 @@ def error(args):
 def upgrade(request):
     form = RemoteUpgradeForm(request.GET)
     if form.is_valid():
-        args = settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS
-        args.append(request.META.get('HTTP_REFERER', 'no-referer'))
-        args.append(request.META.get('HTTP_USER_AGENT', 'no-agent'))
+        args = [
+                settings.REMOTEUPGRADE_SCRIPT,
+                request.META.get('HTTP_REFERER', 'no-referer'),
+                request.META.get('HTTP_USER_AGENT', 'no-agent'),
+                ]
+        args.extend(settings.REMOTEUPGRADE_SCRIPT_EXTRA_ARGS)
         proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = proc.communicate()
         args = {

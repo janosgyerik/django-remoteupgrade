@@ -29,7 +29,7 @@ class RemoteUpgradeTest(TestCase):
         self.assertFailure(response)
 
     def test_missing_script(self):
-        backup = settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS
-        settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS = [ '/path/to/nonexistent' ]
+        backup = settings.REMOTEUPGRADE_SCRIPT
+        settings.REMOTEUPGRADE_SCRIPT = '/path/to/nonexistent'
         self.assertRaises(OSError, self.test_valid_id)
-        settings.REMOTEUPGRADE_SCRIPT_WITH_ARGS = backup
+        settings.REMOTEUPGRADE_SCRIPT = backup
