@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test import Client
 from django.utils import simplejson as json
@@ -7,6 +8,7 @@ from django.utils import simplejson as json
 class RemoteUpgradeTest(TestCase):
     def setUp(self):
         self.client = Client()
+        self.baseurl = reverse('remoteupgrade')
         
     def assertSuccess(self, response):
         self.assertTrue(json.loads(response.content)['success'])
@@ -17,15 +19,18 @@ class RemoteUpgradeTest(TestCase):
     def test_valid_id(self):
         valid_id = 'valid'
         settings.REMOTEUPGRADE_IDS.append(valid_id)
-        response = self.client.get('/remoteupgrade/?id=' + valid_id)
+        url = self.baseurl + '?id=' + valid_id
+        response = self.client.get(url)
         self.assertSuccess(response)
 
     def test_missing_id(self):
-        response = self.client.get('/remoteupgrade/')
+        url = self.baseurl
+        response = self.client.get(url)
         self.assertFailure(response)
 
     def test_invalid_id(self):
-        response = self.client.get('/remoteupgrade/?id=invalid')
+        url = self.baseurl + '?id=invalid'
+        response = self.client.get(url)
         self.assertFailure(response)
 
     def test_missing_script(self):
